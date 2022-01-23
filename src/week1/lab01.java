@@ -32,9 +32,22 @@ public class lab01 {
     }
 
     public static void main(String[] args) {
-        Integer[] originalArray = {1,2, 5, 9, 11};
-        Integer integerToInsert = 6;
-        Integer[] mergedArray = insertIntegerInSortedArray(originalArray, integerToInsert);
+        // k is less than the smallest integer in the original array
+        Integer[] allIntegersGreaterThanK = {3, 4, 5, 9, 11};
+        int k = 1;
+        Integer[] mergedArray = insertIntegerInSortedArray(allIntegersGreaterThanK, k);
+        System.out.println(Arrays.toString(mergedArray));
+
+        // k is less than the smallest integer in the original array
+        Integer[] kIsInBetweenSmallestAndLargest = {3, 4, 5, 9, 11};
+        k = 7;
+        mergedArray = insertIntegerInSortedArray(kIsInBetweenSmallestAndLargest, k);
+        System.out.println(Arrays.toString(mergedArray));
+
+        // k is less than the smallest integer in the original array
+        Integer[] allIntegersSmallerThanK = {3, 4, 5, 9, 11};
+        k = 20;
+        mergedArray = insertIntegerInSortedArray(allIntegersGreaterThanK, k);
         System.out.println(Arrays.toString(mergedArray));
     }
 }

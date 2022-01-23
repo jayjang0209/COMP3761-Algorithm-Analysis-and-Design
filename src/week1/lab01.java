@@ -6,8 +6,9 @@ public class lab01 {
 
     public static Integer[] insertIntegerInSortedArray(Integer[] sortedArray, Integer k ) {
         int newArraySize = sortedArray.length + 1;
-        int sIndex = 0;
+        int newArrayIndex = 0;
         boolean isKInserted = false;
+
         Integer[] newArray = new Integer[newArraySize];
 
         if (k > sortedArray[sortedArray.length - 1]) {
@@ -15,25 +16,20 @@ public class lab01 {
             isKInserted = true;
         }
 
-        for (int i = 0; i < sortedArray.length; i++) {
-            if (sortedArray[i] < k) {
-                newArray[sIndex] = sortedArray[i];
-                sIndex++;
+        for (Integer integer : sortedArray) {
+            if (integer < k) {
+                newArray[newArrayIndex++] = integer;
             } else if (!isKInserted) {
-                newArray[sIndex] = k;
-                sIndex++;
-                newArray[sIndex] = sortedArray[i];
-                sIndex++;
+                newArray[newArrayIndex++] = k;
+                newArray[newArrayIndex++] = integer;
                 isKInserted = true;
             } else {
-                newArray[sIndex] = sortedArray[i];
-                sIndex++;
+                newArray[newArrayIndex++] = integer;
             }
         }
 
         return newArray;
     }
-
 
     public static void main(String[] args) {
         Integer[] originalArray = {1,2, 5, 9, 11};

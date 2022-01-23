@@ -2,9 +2,25 @@ package week1;
 
 import java.util.Arrays;
 
-public class lab01 {
+/**
+ * COMP 3761 lab1 Q5.
+ *
+ * @author Jonghooon Jang
+ * @version Jan, 2022
+ */
+public final class lab01 {
+    private lab01() {
+    }
 
-    public static Integer[] insertIntegerInSortedArray(Integer[] sortedArray, Integer k ) {
+    /**
+     * Insert an integer K into a sorted array of integers.
+     *
+     * @param sortedArray An array
+     * @param k Integer
+     * @return mergedArray array
+     */
+    public static Integer[] insertIntegerInSortedArray(final Integer[] sortedArray,
+                                                       final Integer k) {
         int newArraySize = sortedArray.length + 1;
         int newArrayIndex = 0;
         boolean isKInserted = false;
@@ -31,7 +47,12 @@ public class lab01 {
         return newArray;
     }
 
-    public static void main(String[] args) {
+    /**
+     * Tests the solution.
+     *
+     * @param args not used
+     */
+    public static void main(final String[] args) {
         // k is less than the smallest integer in the original array
         Integer[] allIntegersGreaterThanK = {3, 4, 5, 9, 11};
         int k = 1;
@@ -47,7 +68,7 @@ public class lab01 {
         // k is less than the smallest integer in the original array
         Integer[] allIntegersSmallerThanK = {3, 4, 5, 9, 11};
         k = 20;
-        mergedArray = insertIntegerInSortedArray(allIntegersGreaterThanK, k);
+        mergedArray = insertIntegerInSortedArray(allIntegersSmallerThanK, k);
         System.out.println(Arrays.toString(mergedArray));
     }
 }

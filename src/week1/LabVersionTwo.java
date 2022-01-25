@@ -8,10 +8,13 @@ import java.util.Arrays;
  * @author Jonghooon Jang
  * @version Jan, 2022
  */
-public class LabVersionTwo {
+public final class LabVersionTwo {
+    private LabVersionTwo() {
+    }
 
     /**
      * Insert an integer K into a sorted array of integers.
+     * (deceasing or non-deceasing are not specified)
      *
      * @param sortedArray An array
      * @param k Integer
@@ -21,25 +24,27 @@ public class LabVersionTwo {
                                                        final Integer k) {
         int newArraySize = sortedArray.length + 1;
         int originalArrayIndex = 0;
+
+        // check if the original array is in non-deceasing order or deceasing order
+        boolean isNonDecreasingOrder = sortedArray[0] < sortedArray[1];
+
+        // find the index of k in the new array
         int insertPointIndex = 0;
-        Integer[] newArray = new Integer[newArraySize];
-        boolean isNonDecreasingOrder;
-
-        isNonDecreasingOrder = sortedArray[0] < sortedArray[1];
-
         if ((isNonDecreasingOrder && k > sortedArray[sortedArray.length - 1])
                 || !isNonDecreasingOrder && k < sortedArray[sortedArray.length - 1]) {
             insertPointIndex = newArraySize - 1;
         } else {
             for (int j = 0; j < sortedArray.length - 2; j++) {
-                if (isNonDecreasingOrder && sortedArray[j] < k && k < sortedArray[j+1]) {
+                if (isNonDecreasingOrder && sortedArray[j] < k && k < sortedArray[j + 1]) {
                     insertPointIndex = j + 1;
-                } else if (!isNonDecreasingOrder && sortedArray[j] > k && k > sortedArray[j+1]) {
+                } else if (!isNonDecreasingOrder && sortedArray[j] > k && k > sortedArray[j + 1]) {
                     insertPointIndex = j + 1;
                 }
             }
         }
 
+        // insert integers from the original array and K
+        Integer[] newArray = new Integer[newArraySize];
         for (int i = 0; i < newArraySize; i++) {
             if (i == insertPointIndex) {
                 newArray[i] = k;
@@ -69,7 +74,8 @@ public class LabVersionTwo {
         mergedArray = insertIntegerInSortedArray(kIsInBetweenSmallestAndLargestNonDecreasing, k);
         System.out.println(Arrays.toString(mergedArray));
 
-        // k is in-between the smallest int and largest int in the original array in non-deceasing order
+        // k is in-between the smallest int and largest int in the original
+        // array in non-deceasing order
         Integer[] allIntegersSmallerThanKNonDecreasing = {2, 4, 6, 10};
         k = 5;
         mergedArray = insertIntegerInSortedArray(allIntegersSmallerThanKNonDecreasing, k);
@@ -87,7 +93,8 @@ public class LabVersionTwo {
         mergedArray = insertIntegerInSortedArray(kIsInBetweenSmallestAndLargestDecreasing, k);
         System.out.println(Arrays.toString(mergedArray));
 
-        // k is in-between the smallest int and largest int in the original array in non-deceasing order
+        // k is in-between the smallest int and largest int in the original array
+        // in non-deceasing order
         Integer[] allIntegersSmallerThanKDecreasing = {10, 8, 6, 4, 2};
         k = 7;
         mergedArray = insertIntegerInSortedArray(allIntegersSmallerThanKDecreasing, k);

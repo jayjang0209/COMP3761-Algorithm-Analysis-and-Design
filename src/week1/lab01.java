@@ -13,7 +13,7 @@ public final class lab01 {
     }
 
     /**
-     * Insert an integer K into a sorted array of integers.
+     * Insert an integer K into a sorted array of integers in non-decreasing order.
      *
      * @param sortedArray An array
      * @param k Integer
@@ -54,7 +54,8 @@ public final class lab01 {
      */
     public static void main(final String[] args) {
         // k is less than the smallest integer in the original array
-        Integer[] allIntegersGreaterThanK = {3, 4, 5, 9, 11};
+//        Integer[] allIntegersGreaterThanK = {3, 4, 5, 9, 11};
+        Integer[] allIntegersGreaterThanK = {15, 9, 5, 3, 2};
         int k = 1;
         Integer[] mergedArray = insertIntegerInSortedArray(allIntegersGreaterThanK, k);
         System.out.println(Arrays.toString(mergedArray));

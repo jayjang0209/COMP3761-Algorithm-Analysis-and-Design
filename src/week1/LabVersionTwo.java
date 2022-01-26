@@ -26,7 +26,14 @@ public final class LabVersionTwo {
         int originalArrayIndex = 0;
 
         // check if the original array is in non-deceasing order or deceasing order
-        boolean isNonDecreasingOrder = sortedArray[0] < sortedArray[1];
+        boolean isNonDecreasingOrder = true;
+        int i = 0;
+        while (i < sortedArray.length - 2 && isNonDecreasingOrder) {
+            if (sortedArray[i] > sortedArray[i+1]) {
+                isNonDecreasingOrder = false;
+            }
+            i++;
+        }
 
         // find the index of k in the new array
         int insertPointIndex = 0;
@@ -45,7 +52,7 @@ public final class LabVersionTwo {
 
         // insert integers from the original array and K
         Integer[] newArray = new Integer[newArraySize];
-        for (int i = 0; i < newArraySize; i++) {
+        for (i = 0; i < newArraySize; i++) {
             if (i == insertPointIndex) {
                 newArray[i] = k;
             } else {

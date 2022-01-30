@@ -16,12 +16,12 @@ public class FindAnagram
         if((a.length() != b.length()))
             return false;
 
-        sb = new StringBuilder(b.toLowerCase());
-
+        sb = new StringBuilder(b);
         for (int i = 0; i < a.length(); i++) {
             for (int j = 0; j < sb.length(); j++) {
-                if (sb.charAt(j) == a.toLowerCase().charAt(i)) {
+                if (a.charAt(i) == sb.charAt(j)) {
                     sb.deleteCharAt(j);
+                    break;
                 }
             }
         }
@@ -38,17 +38,20 @@ public class FindAnagram
     {
         if(a.length() != b.length())
             return false;
+
         char[] aCharArray = a.toLowerCase().toCharArray();
         char[] bCharArray = b.toLowerCase().toCharArray();
-        Arrays.sort(aCharArray);
+        Arrays.sort(aCharArray);  // bigO of ??
         Arrays.sort(bCharArray);
 
-        for (int i = 0; i < a.length(); i++) {
-            if (aCharArray[i] != bCharArray[i]) {
-                return false;
-            }
-        }
-        return true;
+        return Arrays.equals(aCharArray, bCharArray);
+
+//        for (int i = 0; i < a.length(); i++) {
+//            if (aCharArray[i] != bCharArray[i]) {
+//                return false;
+//            }
+//        }
+//        return true;
     }
 
     // O(????)
@@ -58,9 +61,40 @@ public class FindAnagram
         if(a.length() != b.length())
             return false;
 
-        int[] ascii = new int[128];
-        return true;
-        // fill in solution here
+        int[] asciiA = new int[128];
+        int[] asciiB = new int[128];
+
+        for (int i =0; i < a.length(); i++) {
+            asciiA[a.charAt(i)] += 1;
+            asciiB[b.charAt(i)] += 1;
+        }
+
+        return Arrays.equals(asciiA, asciiB);
+
+//        for (int i = 0; i < asciiA.length; i++) {
+//            if (asciiA[i] != asciiB[i]) {
+//                return false;
+//            }
+//        }
+//        return true;
+
+//        int sumOfAsciiValueForA = 0;
+//        int sumOfAsciiValueForB = 0;
+//        for (int j = 0; j < asciiA.length; j++) {
+//            if (asciiA[j] != 0) {
+//                sumOfAsciiValueForA += j * asciiA[j];
+//            }
+//            if (asciiB[j] != 0) {
+//                sumOfAsciiValueForB += j * asciiB[j];
+//            }
+//        }
+//
+//        return sumOfAsciiValueForA == sumOfAsciiValueForB;
+
+
+
+
+
     }
 
 
@@ -135,7 +169,7 @@ public class FindAnagram
         {
             run("Dict.txt", 1);
             run("Dict.txt", 2);
-//            run("Dict.txt", 3);
+            run("Dict.txt", 3);
         }
         catch (FileNotFoundException e)
         {

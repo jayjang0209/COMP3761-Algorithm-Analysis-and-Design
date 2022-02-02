@@ -13,88 +13,53 @@ public class FindAnagram
     static boolean anagram1(String a, String b)
     {
         StringBuilder sb;
+
         if((a.length() != b.length()))
             return false;
 
         sb = new StringBuilder(b);
         for (int i = 0; i < a.length(); i++) {
             for (int j = 0; j < sb.length(); j++) {
-                if (a.charAt(i) == sb.charAt(j)) {
+                if (a.charAt(i) == sb.charAt(j)) {  // basic operation
                     sb.deleteCharAt(j);
                     break;
                 }
             }
         }
-
-        if (sb.length() == 0) {
-            return true;
-        }
-        return false;
+        return sb.length() == 0;
     }
 
-    // O(n)
+    // average: O(n*logn) worst: O(n^2)
     // compares 2 string after sorting a words alphabetically
     static boolean anagram2(String a, String b)
     {
         if(a.length() != b.length())
             return false;
 
-        char[] aCharArray = a.toLowerCase().toCharArray();
-        char[] bCharArray = b.toLowerCase().toCharArray();
-        Arrays.sort(aCharArray);  // bigO of ??
-        Arrays.sort(bCharArray);
+        char[] aCharArray = a.toCharArray(); // O(n)
+        char[] bCharArray = b.toCharArray();
+        Arrays.sort(aCharArray); // basic operations
+        Arrays.sort(bCharArray); // uses dual-pivot Quicksort
 
         return Arrays.equals(aCharArray, bCharArray);
-
-//        for (int i = 0; i < a.length(); i++) {
-//            if (aCharArray[i] != bCharArray[i]) {
-//                return false;
-//            }
-//        }
-//        return true;
     }
 
-    // O(????)
+    // O(n)
     // checks the difference in present ascii indexes, cases ignored
     static boolean anagram3(String a, String b)
     {
         if(a.length() != b.length())
             return false;
 
-        int[] asciiA = new int[128];
-        int[] asciiB = new int[128];
+        int[] asciiA = new int[128]; // O(n)
+        int[] asciiB = new int[128]; // O(n)
 
-        for (int i =0; i < a.length(); i++) {
-            asciiA[a.charAt(i)] += 1;
+        for (int i = 0; i < a.length(); i++) {
+            asciiA[a.charAt(i)] += 1; // basic operations O(1)
             asciiB[b.charAt(i)] += 1;
         }
 
         return Arrays.equals(asciiA, asciiB);
-
-//        for (int i = 0; i < asciiA.length; i++) {
-//            if (asciiA[i] != asciiB[i]) {
-//                return false;
-//            }
-//        }
-//        return true;
-
-//        int sumOfAsciiValueForA = 0;
-//        int sumOfAsciiValueForB = 0;
-//        for (int j = 0; j < asciiA.length; j++) {
-//            if (asciiA[j] != 0) {
-//                sumOfAsciiValueForA += j * asciiA[j];
-//            }
-//            if (asciiB[j] != 0) {
-//                sumOfAsciiValueForB += j * asciiB[j];
-//            }
-//        }
-//
-//        return sumOfAsciiValueForA == sumOfAsciiValueForB;
-
-
-
-
-
     }
 
 
@@ -167,7 +132,7 @@ public class FindAnagram
     {
         try
         {
-            run("Dict.txt", 1);
+//            run("Dict.txt", 1);
             run("Dict.txt", 2);
             run("Dict.txt", 3);
         }

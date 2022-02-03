@@ -37,11 +37,27 @@ public class SpellChecker {
 	{
 		double startTime, elapsedTime;
 		ArrayList <String> wordsNotFound = new ArrayList<String>();
-		int count 				= 0;
+		int count = 0;
 
 		startTime = System.currentTimeMillis();
-		
-			// Implement seqSearch
+		System.out.println(test.size());
+		System.out.println(words.size());
+
+		for (int i = 0; i < test.size(); i++) {
+
+			boolean isWordFound = false;
+
+			for (int j = 0;  j < words.size(); j++) {
+				if (test.get(i).equalsIgnoreCase(words.get(j))) { // basic operation O(n^2)
+					isWordFound = true;
+				}
+			}
+
+			if (!isWordFound) {
+				wordsNotFound.add(test.get(i));
+				count++;
+			}
+		}
 
 		elapsedTime = (System.currentTimeMillis() - startTime) * 1000;
 		System.out.println("Sequential Search:\t" + count + " words not found. " + elapsedTime + " microseconds.");
@@ -60,7 +76,7 @@ public class SpellChecker {
 	{
 		double startTime, elapsedTime;
 		ArrayList <String> wordsNotFound	= new ArrayList<String>();
-		int count 				= 0;
+		int count = 0;
 
 		startTime = System.currentTimeMillis();
 		    
@@ -81,7 +97,7 @@ public class SpellChecker {
 
 		seqSearch(test, words);
 		System.out.println();
-		binSearch(test,words);
+//		binSearch(test,words);
 	}
 
 }

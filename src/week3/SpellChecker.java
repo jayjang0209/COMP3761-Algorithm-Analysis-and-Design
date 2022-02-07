@@ -10,7 +10,7 @@ public class SpellChecker {
     /*
      * Returns an ArrayList of words from a file.
      */
-    static ArrayList<String> read(String file) throws FileNotFoundException {
+    static ArrayList<String> read(final String file) throws FileNotFoundException {
         ArrayList<String> list = new ArrayList<String>();
         Scanner reader = new Scanner(System.in);
 
@@ -32,7 +32,7 @@ public class SpellChecker {
      * comparing 2 different ArrayLists and the outer loop is dependent of the inner loop.
      * Efficiency : O(n^2)
      */
-    static void seqSearch(ArrayList<String> test, ArrayList<String> words) {
+    static void seqSearch(final ArrayList<String> test, final ArrayList<String> words) {
         double startTime, elapsedTime;
         ArrayList<String> wordsNotFound = new ArrayList<String>();
         int count = 0;
@@ -47,6 +47,7 @@ public class SpellChecker {
             for (int j = 0; j < words.size(); j++) {
                 if (test.get(i).equalsIgnoreCase(words.get(j))) { // basic operation O(n^2)
                     isWordFound = true;
+                    break;
                 }
             }
 
@@ -69,7 +70,7 @@ public class SpellChecker {
      *  binary search technique is (logn).Thus, program is supposed to run (n)(logn) times
      *  Efficiency : O(nlogn)
      */
-    static void binSearch(ArrayList<String> test, ArrayList<String> words) {
+    static void binSearch(final ArrayList<String> test, final ArrayList<String> words) {
         double startTime, elapsedTime;
         ArrayList<String> wordsNotFound = new ArrayList<String>();
         int count = 0;
@@ -77,15 +78,14 @@ public class SpellChecker {
         startTime = System.currentTimeMillis();
 
         /* Implementation */
-        for (int i = 0; i < test.size(); i++) {
+        for (int i = 0; i < test.size(); i++) { // outer loop O(n)
             int left = 0;
             int right = words.size() - 1;
-            Boolean found = false;
+            boolean found = false;
 
-            while (!found && left <= right) {
+            while (!found && left <= right) {  // inner loop O(logn), binary search
                 int mid = (left + right) / 2;
                 String elementToCompare = words.get(mid);
-//                System.out.println(elementToCompare);
                 if (elementToCompare.equalsIgnoreCase(test.get(i))) {
                     found = true;
                 } else if (test.get(i).compareToIgnoreCase(elementToCompare) < 0) {
@@ -99,7 +99,6 @@ public class SpellChecker {
                 wordsNotFound.add(test.get(i));
                 count++;
             }
-
         }
 
 
@@ -111,7 +110,7 @@ public class SpellChecker {
     /*
      * main method
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(final String[] args) throws FileNotFoundException {
         ArrayList<String> test = read("lab3_testdata.txt");
         ArrayList<String> words = read("lab3_wordlist.txt");
 

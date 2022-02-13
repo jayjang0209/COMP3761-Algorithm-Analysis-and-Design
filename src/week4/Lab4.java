@@ -11,7 +11,6 @@ public class Lab4 {
             return left;
         }
 
-
          if (right - left == 1) {
             if (a[left] > a[right] ) {
                 return left;
@@ -30,23 +29,62 @@ public class Lab4 {
     }
 
 
-    static int[] mergeSort(int[] A) {
-        if (A.length > 1) {
+    static int[] mergeSort(final int[] A) throws ArrayIndexOutOfBoundsException {
+        int n = A.length;
+        int mid = n / 2;
 
-            // Implement here
-//            merge(B, C, A);
+        if(n == 0) {
+            throw new ArrayIndexOutOfBoundsException("Empty array was passed.");
+        }
+
+        if (n > 1) {
+            int[] B = Arrays.copyOfRange(A, 0, mid);
+            int[] C = Arrays.copyOfRange(A, mid, n);
+            mergeSort(B);
+            mergeSort(C);
+            merge(B, C, A);
         }
         return A;
     }
 
-    static void merge(int[] B, int[] C, int[] A) {
-        // Implement here
+    static void merge(final int[] B,final int[] C,final int[] A) {
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        int p = B.length;
+        int q = C.length;
+
+        while (i < p && j < q) {
+            if (B[i] <= C[j]) {
+                A[k] = B[i];
+                i++;
+            } else {
+                A[k] = C[j];
+                j++;
+            }
+            k++;
+        }
+
+        if (i == p) {
+            while (j < q - 1) {
+                A[k] = C[j];
+                j++;
+                k++;
+            }
+        } else {
+            while (i < p - 1) {
+                A[k] = B[i];
+                i++;
+                k++;
+            }
+        }
     }
 
     public static void main(String[]args)
     {
         int a[] = {2,5,8,3,6,9,1,6,5};
-        int b[] = {3,2,7,6,8};
+//        int b[] = {3,2,7,6,8};
+        int b[] = {};
         System.out.printf("Q1) findMax\nMaximum element: position %d\n", findMax(a, 0, a.length - 1) + 1);
 
         System.out.print("Q2) mergeSort\n");
@@ -55,7 +93,11 @@ public class Lab4 {
         for(int i = 0; i < b.length; i++)
             System.out.print(b[i] + ", ");
 
-//        mergeSort(b);
+        try {
+            mergeSort(b);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("\nAfter sort:");
 

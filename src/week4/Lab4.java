@@ -66,13 +66,13 @@ public class Lab4 {
         }
 
         if (i == p) {
-            while (j < q - 1) {
+            while (j < q) {
                 A[k] = C[j];
                 j++;
                 k++;
             }
         } else {
-            while (i < p - 1) {
+            while (i < p) {
                 A[k] = B[i];
                 i++;
                 k++;
@@ -83,8 +83,7 @@ public class Lab4 {
     public static void main(String[]args)
     {
         int a[] = {2,5,8,3,6,9,1,6,5};
-//        int b[] = {3,2,7,6,8};
-        int b[] = {};
+        int b[] = {3,2,7,6,8};
         System.out.printf("Q1) findMax\nMaximum element: position %d\n", findMax(a, 0, a.length - 1) + 1);
 
         System.out.print("Q2) mergeSort\n");

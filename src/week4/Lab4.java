@@ -4,15 +4,23 @@ import java.util.Arrays;
 
 public class Lab4 {
 
+    /**
+     * Finds a position of the largest number in the specified array.
+     * @param a a array of integers.
+     * @param left an integer.
+     * @param right an integer.
+     */
     static int findMax(int a[], int left, int right)
     {
         // divide by 2. return largest. at the end, compare.
+        // base case: size = 0
         if (left == right) {
             return left;
         }
 
+        // base case: size = 1
          if (right - left == 1) {
-            if (a[left] > a[right] ) {
+            if (a[left] > a[right]) {
                 return left;
             } else {
                 return right;
@@ -23,20 +31,27 @@ public class Lab4 {
             int mid = (left + right) / 2;
             int leftLargestIndex = findMax(a, left, mid);
             int rightLargestIndex = findMax(a, mid + 1, right);
+            //compares the largest numbers from L and R, returns the index of the largest number
             return a[leftLargestIndex] > a[rightLargestIndex] ? leftLargestIndex : rightLargestIndex;
         }
 
     }
 
-
+    /**
+     * Sorts the specified array by recursive mergesort.
+     * @param A a array of integers.
+     * @throws ArrayIndexOutOfBoundsException if the length of array is less than 1
+     */
     static int[] mergeSort(final int[] A) throws ArrayIndexOutOfBoundsException {
         int n = A.length;
         int mid = n / 2;
 
+        // error handler when the size is zero
         if(n == 0) {
             throw new ArrayIndexOutOfBoundsException("Empty array was passed.");
         }
 
+        // Divide and conquer
         if (n > 1) {
             int[] B = Arrays.copyOfRange(A, 0, mid);
             int[] C = Arrays.copyOfRange(A, mid, n);
@@ -47,7 +62,13 @@ public class Lab4 {
         return A;
     }
 
-    static void merge(final int[] B,final int[] C,final int[] A) {
+    /**
+     * Merges two sorted arrays into one sorted array.
+     * @param B a array of integers.
+     * @param C a array of integers.
+     * @param A a array of integers.
+     */
+    static void merge(final int[] B, final int[] C, final int[] A) {
         int i = 0;
         int j = 0;
         int k = 0;

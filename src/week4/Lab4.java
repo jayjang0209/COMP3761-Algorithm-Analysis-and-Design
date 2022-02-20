@@ -103,7 +103,7 @@ public class Lab4 {
 
     public static void main(String[]args)
     {
-        int a[] = {2,5,8,3,6,9,1,6,5};
+        int a[] = {2,5,8,3,6,9,1,6,5, 11};
         int b[] = {3,2,7,6,8};
         System.out.printf("Q1) findMax\nMaximum element: position %d\n", findMax(a, 0, a.length - 1) + 1);
 

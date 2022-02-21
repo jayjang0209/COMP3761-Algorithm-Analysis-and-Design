@@ -25,12 +25,16 @@ public class PriorityQueueSample {
 
         // print size
         System.out.println("size: " + pq.size());
+
         // return highest priority element in the queue without removing it
         System.out.println("peek: " + pq.peek());
+
         // print size
         System.out.println("size: " + pq.size());
+
         // return highest priority element and removes it from the queue
         System.out.println("poll: " + pq.poll());
+
         // print size
         System.out.println("size: " + pq.size());
 

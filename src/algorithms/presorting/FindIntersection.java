@@ -7,11 +7,11 @@ public class FindIntersection {
 
     public static ArrayList<Integer> findIntersectionUsingPresort(int[] A, int[] B) {
         Arrays.sort(A); // O(n*logn)
-        Arrays.sort(B);
+        Arrays.sort(B); // O(m*logm)
         ArrayList<Integer> intersection = new ArrayList<>();
         int i = 0;
         int j = 0;
-        while (i != A.length && j != B.length) {
+        while (i != A.length && j != B.length) { // O(n + m)
             if (A[i] == B[j]) {
                 intersection.add(A[i]);
                 i++;
@@ -32,7 +32,7 @@ public class FindIntersection {
         ArrayList<Integer> intersection = new ArrayList<>();
         for (int i = 0; i < A.length; i++) {
             for (int j = 0; j < B.length; j++) {
-                if (A[i] == B[j]) { // O(n^2) basic operation
+                if (A[i] == B[j]) { // O(n*m) basic operation
                     intersection.add(A[i]);
                 }
             }

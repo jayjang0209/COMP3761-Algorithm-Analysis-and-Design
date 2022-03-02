@@ -4,15 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
+import static java.util.Map.Entry.comparingByValue;
+
 public class Lab6 {
 
-    static void q1(String file) throws FileNotFoundException
+    static void q1(final String file) throws FileNotFoundException
     {
         Scanner reader = new Scanner(new FileReader(file));
 
         Map<String, Integer> wordMap = new HashMap<>();
         String word;
-        while(reader.hasNext())
+        while (reader.hasNext())
         {
             word = reader.next();
             if (wordMap.containsKey(word)) {
@@ -27,27 +29,33 @@ public class Lab6 {
         reader.close();
     }
 
-//    static boolean q2(String file) throws FileNotFoundException
-//    {
-//        Scanner reader = new Scanner(new FileReader(file));
-//
-//        //create your hashset
-//        while(reader.hasNext())
-//        {
-//            word = reader.next();
-//            //Implement
-//        }
-//
-//        reader.close();
-//        return some bool;
-//
-//    }
+    static boolean q2(String file) throws FileNotFoundException
+    {
+        Scanner reader = new Scanner(new FileReader(file));
+
+        HashSet<String> wordSet = new HashSet<>();
+
+        String word;
+        while (reader.hasNext())
+        {
+            word = reader.next();
+            if (wordSet.contains(word)) {
+                return false;
+            } else {
+                wordSet.add(word);
+            }
+        }
+        reader.close();
+        return true;
+    }
 
     static void q3(String file) throws FileNotFoundException
     {
         Scanner reader = new Scanner(new FileReader(file));
 
         //create your other variables (sets, etc)
+        HashSet<String> keywords = new HashSet<>();
+        Map<String, Long> excusesKeywordOccurrence = new HashMap<>();
 
         int keyWordsCount = reader.nextInt();
         int excuseCount = reader.nextInt();
@@ -58,19 +66,36 @@ public class Lab6 {
         //read keywords
         for(int i = 0; i < keyWordsCount; i++)
         {
+            keywords.add(reader.nextLine());
             //read keywords e.g. datatype.add(reader.nextLine())
         }
+        System.out.println(keywords);
 
         //evaluate excuses
+        long keywordOccurrence;
+
         for(int i = 0; i < excuseCount; i++)
         {
             String excuse = reader.nextLine();
             String excuseWords[] = excuse.split(" ");
-
-            //Implement
+            keywordOccurrence = Arrays.stream(excuseWords).filter(keywords::contains).count();
+            if (!excusesKeywordOccurrence.containsKey(excuse)) {
+                excusesKeywordOccurrence.put(excuse, keywordOccurrence);
+            }
         }
 
-        //Print max excuses
+        System.out.println(excusesKeywordOccurrence);
+
+        ArrayList<String> worstExcuses = new ArrayList<>();
+        long maxOccurrence = Collections.max(excusesKeywordOccurrence.values());
+        System.out.println(maxOccurrence);
+
+        excusesKeywordOccurrence
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .filter(e -> e.getValue() >= maxOccurrence)
+                .forEach(e -> System.out.println(e.getKey()));
 
         reader.close();
 
@@ -79,9 +104,10 @@ public class Lab6 {
 
     public static void main(String[] args) throws FileNotFoundException
     {
-        q1("love.txt");
-//        System.out.println(q2("q2input.txt"));
-//        q3("q3test.txt");
+//        q1("love.txt");
+//        q1("q2input.txt");
+//        System.out.println(q2("q2input_distinct.txt"));
+        q3("q3test.txt");
     }
 
 }

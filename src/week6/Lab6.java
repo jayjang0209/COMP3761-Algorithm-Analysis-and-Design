@@ -33,6 +33,8 @@ public final class Lab6 {
 
         Map<String, Integer> wordMap = new HashMap<>();
         String word;
+
+        // map song word and its occurrence
         while (reader.hasNext()) {
             word = reader.next();
             if (wordMap.containsKey(word)) {
@@ -42,6 +44,7 @@ public final class Lab6 {
             }
         }
 
+        // print the output in alphabetical order
         wordMap
                 .entrySet()
                 .stream()

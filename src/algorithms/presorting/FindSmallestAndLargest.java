@@ -28,6 +28,15 @@ public class FindSmallestAndLargest {
         return smallestAndLargest;
     }
 
+    public static int[] findSmallestAndLargestUsingDivideAndConquer(int[] array) {
+        int[] smallestAndLargest = new int[2];
+
+
+
+
+        return smallestAndLargest;
+    }
+
     public static void main(String[] args) {
         int[] array = {1, 5, 0, 11, 6, 9, -3};
         System.out.println(Arrays.toString(findSmallestAndLargestUsingBruteForce(array)));

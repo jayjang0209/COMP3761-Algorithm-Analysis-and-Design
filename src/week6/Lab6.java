@@ -2,7 +2,12 @@ package week6;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Scanner;
 
 import static java.util.Map.Entry.comparingByValue;
 
@@ -53,10 +58,10 @@ public class Lab6 {
     {
         Scanner reader = new Scanner(new FileReader(file));
 
-        //create your other variables (sets, etc)
         HashSet<String> keywords = new HashSet<>();
         Map<String, Long> excusesKeywordOccurrence = new HashMap<>();
 
+        // reads the number of keywords and excuses.
         int keyWordsCount = reader.nextInt();
         int excuseCount = reader.nextInt();
 
@@ -64,32 +69,30 @@ public class Lab6 {
         reader.nextLine();
 
         //read keywords
-        for(int i = 0; i < keyWordsCount; i++)
+        for (int i = 0; i < keyWordsCount; i++)
         {
             keywords.add(reader.nextLine());
-            //read keywords e.g. datatype.add(reader.nextLine())
         }
-        System.out.println(keywords);
 
         //evaluate excuses
         long keywordOccurrence;
 
-        for(int i = 0; i < excuseCount; i++)
+        for (int i = 0; i < excuseCount; i++)
         {
             String excuse = reader.nextLine();
-            String excuseWords[] = excuse.split(" ");
+            String[] excuseWords = excuse.split(" ");
+
+            // count the occurrence of the keywords and add insert into hashMap
             keywordOccurrence = Arrays.stream(excuseWords).filter(keywords::contains).count();
             if (!excusesKeywordOccurrence.containsKey(excuse)) {
                 excusesKeywordOccurrence.put(excuse, keywordOccurrence);
             }
         }
 
-        System.out.println(excusesKeywordOccurrence);
-
-        ArrayList<String> worstExcuses = new ArrayList<>();
+        // find the maximum of occurrence
         long maxOccurrence = Collections.max(excusesKeywordOccurrence.values());
-        System.out.println(maxOccurrence);
 
+        // print worst excuse(s)
         excusesKeywordOccurrence
                 .entrySet()
                 .stream()
@@ -98,7 +101,6 @@ public class Lab6 {
                 .forEach(e -> System.out.println(e.getKey()));
 
         reader.close();
-
     }
 
 

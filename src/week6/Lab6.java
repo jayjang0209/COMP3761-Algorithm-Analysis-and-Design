@@ -2,43 +2,46 @@ package week6;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
-public class lab6 {
+public class Lab6 {
 
     static void q1(String file) throws FileNotFoundException
     {
         Scanner reader = new Scanner(new FileReader(file));
 
-        //create your map
-
+        Map<String, Integer> wordMap = new HashMap<>();
+        String word;
         while(reader.hasNext())
         {
             word = reader.next();
-            //Implement
+            if (wordMap.containsKey(word)) {
+                wordMap.put(word, wordMap.get(word) + 1);
+            } else {
+                wordMap.put(word, 0);
+            }
         }
+
+        wordMap.forEach((key, value) -> System.out.println(key + " - " + value));
 
         reader.close();
     }
 
-    static boolean q2(String file) throws FileNotFoundException
-    {
-        Scanner reader = new Scanner(new FileReader(file));
-
-        //create your hashset
-        while(reader.hasNext())
-        {
-            word = reader.next();
-            //Implement
-        }
-
-        reader.close();
-        return some bool;
-
-    }
+//    static boolean q2(String file) throws FileNotFoundException
+//    {
+//        Scanner reader = new Scanner(new FileReader(file));
+//
+//        //create your hashset
+//        while(reader.hasNext())
+//        {
+//            word = reader.next();
+//            //Implement
+//        }
+//
+//        reader.close();
+//        return some bool;
+//
+//    }
 
     static void q3(String file) throws FileNotFoundException
     {
@@ -77,8 +80,8 @@ public class lab6 {
     public static void main(String[] args) throws FileNotFoundException
     {
         q1("love.txt");
-        System.out.println(q2("q2input.txt"));
-        q3("q3test.txt");
+//        System.out.println(q2("q2input.txt"));
+//        q3("q3test.txt");
     }
 
 }

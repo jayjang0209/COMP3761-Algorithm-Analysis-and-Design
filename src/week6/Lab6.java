@@ -9,18 +9,31 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 
-import static java.util.Map.Entry.comparingByValue;
 
-public class Lab6 {
+/**
+ * COMP3761 lab 6.
+ *
+ * @author Jonghoon Jang
+ * @version Feb, 2022
+ */
+public final class Lab6 {
 
-    static void q1(final String file) throws FileNotFoundException
-    {
+    private Lab6() {
+    }
+
+
+    /**
+     * Find the number of times each word appears in the file.
+     *
+     * @param file a string representing the name of the file
+     * @throws FileNotFoundException if the file is not found
+     */
+    static void q1(final String file) throws FileNotFoundException {
         Scanner reader = new Scanner(new FileReader(file));
 
         Map<String, Integer> wordMap = new HashMap<>();
         String word;
-        while (reader.hasNext())
-        {
+        while (reader.hasNext()) {
             word = reader.next();
             if (wordMap.containsKey(word)) {
                 wordMap.put(word, wordMap.get(word) + 1);
@@ -29,20 +42,22 @@ public class Lab6 {
             }
         }
 
-        wordMap.forEach((key, value) -> System.out.println(key + " - " + value));
+        wordMap
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(e -> System.out.println(e.getKey() + " - " + e.getValue()));
 
         reader.close();
     }
 
-    static boolean q2(String file) throws FileNotFoundException
-    {
+    static boolean q2(final String file) throws FileNotFoundException {
         Scanner reader = new Scanner(new FileReader(file));
 
         HashSet<String> wordSet = new HashSet<>();
 
         String word;
-        while (reader.hasNext())
-        {
+        while (reader.hasNext()) {
             word = reader.next();
             if (wordSet.contains(word)) {
                 return false;
@@ -54,8 +69,7 @@ public class Lab6 {
         return true;
     }
 
-    static void q3(String file) throws FileNotFoundException
-    {
+    static void q3(String file) throws FileNotFoundException {
         Scanner reader = new Scanner(new FileReader(file));
 
         HashSet<String> keywords = new HashSet<>();
@@ -69,16 +83,14 @@ public class Lab6 {
         reader.nextLine();
 
         //read keywords
-        for (int i = 0; i < keyWordsCount; i++)
-        {
+        for (int i = 0; i < keyWordsCount; i++) {
             keywords.add(reader.nextLine());
         }
 
         //evaluate excuses
         long keywordOccurrence;
 
-        for (int i = 0; i < excuseCount; i++)
-        {
+        for (int i = 0; i < excuseCount; i++) {
             String excuse = reader.nextLine();
             String[] excuseWords = excuse.split(" ");
 
@@ -104,12 +116,11 @@ public class Lab6 {
     }
 
 
-    public static void main(String[] args) throws FileNotFoundException
-    {
-//        q1("love.txt");
+    public static void main(String[] args) throws FileNotFoundException {
+        q1("love.txt");
 //        q1("q2input.txt");
 //        System.out.println(q2("q2input_distinct.txt"));
-        q3("q3test.txt");
+//        q3("q3test.txt");
     }
 
 }

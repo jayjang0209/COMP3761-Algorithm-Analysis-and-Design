@@ -54,6 +54,14 @@ public final class Lab6 {
         reader.close();
     }
 
+
+    /**
+     * Determine if all the words in a file are distinct.
+     *
+     * @param file a string representing the name of the file
+     * @return true if all the words are distinct, else false as boolean
+     * @throws FileNotFoundException if the file is not found
+     */
     static boolean q2(final String file) throws FileNotFoundException {
         Scanner reader = new Scanner(new FileReader(file));
 

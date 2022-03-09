@@ -2,7 +2,13 @@ package week6;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Scanner;
 
 
 /**
@@ -137,9 +143,9 @@ public final class Lab6 {
      * @throws FileNotFoundException if the file is not found
      */
     public static void main(final String[] args) throws FileNotFoundException {
-//        q1("love.txt");
+        q1("love.txt");
         System.out.println(q2("q2input.txt"));
-//        q3("q3test.txt");
+        q3("q3test.txt");
     }
 
 }

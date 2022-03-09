@@ -2,12 +2,7 @@ package week6;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 
 /**
@@ -20,7 +15,6 @@ public final class Lab6 {
 
     private Lab6() {
     }
-
 
     /**
      * Find the number of times each word appears in the file.
@@ -36,11 +30,11 @@ public final class Lab6 {
 
         // map song word and its occurrence
         while (reader.hasNext()) {
-            word = reader.next();
+            word = reader.next().toLowerCase(Locale.ROOT);
             if (wordMap.containsKey(word)) {
                 wordMap.put(word, wordMap.get(word) + 1);
             } else {
-                wordMap.put(word, 0);
+                wordMap.put(word, 1);
             }
         }
 
@@ -71,16 +65,25 @@ public final class Lab6 {
         while (reader.hasNext()) {
             word = reader.next();
             if (wordSet.contains(word)) {
+                System.out.println("NOT DISTINCT");
                 return false;
             } else {
                 wordSet.add(word);
             }
         }
         reader.close();
+        System.out.println("DISTINCT");
         return true;
     }
 
-    static void q3(String file) throws FileNotFoundException {
+
+    /**
+     * Find the worst excuse(s) containing the largest number of keywords.
+     *
+     * @param file a string representing the name of the file
+     * @throws FileNotFoundException if the file is not found
+     */
+    static void q3(final String file) throws FileNotFoundException {
         Scanner reader = new Scanner(new FileReader(file));
 
         HashSet<String> keywords = new HashSet<>();
@@ -127,10 +130,15 @@ public final class Lab6 {
     }
 
 
-    public static void main(String[] args) throws FileNotFoundException {
+    /**
+     * Run the simple tests.
+     *
+     * @param args unused
+     * @throws FileNotFoundException if the file is not found
+     */
+    public static void main(final String[] args) throws FileNotFoundException {
         q1("love.txt");
-//        q1("q2input.txt");
-//        System.out.println(q2("q2input_distinct.txt"));
+//        System.out.println(q2("q2input.txt"));
 //        q3("q3test.txt");
     }
 

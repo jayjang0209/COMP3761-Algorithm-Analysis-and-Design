@@ -65,14 +65,14 @@ public final class Lab6 {
         while (reader.hasNext()) {
             word = reader.next();
             if (wordSet.contains(word)) {
-                System.out.println("NOT DISTINCT");
+                System.out.print("NOT DISTINCT - return value: ");
                 return false;
             } else {
                 wordSet.add(word);
             }
         }
         reader.close();
-        System.out.println("DISTINCT");
+        System.out.print("DISTINCT - return value: ");
         return true;
     }
 
@@ -137,8 +137,8 @@ public final class Lab6 {
      * @throws FileNotFoundException if the file is not found
      */
     public static void main(final String[] args) throws FileNotFoundException {
-        q1("love.txt");
-//        System.out.println(q2("q2input.txt"));
+//        q1("love.txt");
+        System.out.println(q2("q2input.txt"));
 //        q3("q3test.txt");
     }
 

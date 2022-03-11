@@ -8,12 +8,12 @@ public class AdjGraph {
     private boolean directed = false;
     private int[] visited;
 
-    public AdjGraph(int num) {
+    public AdjGraph(final int num) {
         matrix = new int[num][num];
     }
 
     public boolean isDirected() {
-        return false;
+        return directed;
     }
 
     public void setDirected() {
@@ -22,7 +22,12 @@ public class AdjGraph {
 
     public String toString() {
         String result = "";
-        //implement
+        for (int i = 0; i < this.matrix[0].length; i++) {
+            for (int j = 0; j < this.matrix[0].length; j++) {
+                System.out.print(this.matrix[i][j] + ' ');
+            }
+            System.out.print('\n');
+        }
         return result;
     }
 

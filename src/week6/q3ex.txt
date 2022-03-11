@@ -1,0 +1,10 @@
+4 5
+postdog
+ate
+homework
+canary
+this excuse is so good that it contain no keywords
+a postdog ate my homework
+the canary ate my postdog
+my canary was killed by a postdog
+can you believe postdog died

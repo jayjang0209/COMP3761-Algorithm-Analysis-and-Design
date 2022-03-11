@@ -24,15 +24,16 @@ public class AdjGraph {
         String result = "";
         for (int i = 0; i < this.matrix[0].length; i++) {
             for (int j = 0; j < this.matrix[0].length; j++) {
-                System.out.print(this.matrix[i][j] + ' ');
+                System.out.print(this.matrix[i][j]);
+                System.out.print((j == this.matrix[0].length - 1) ? '\n' : ' ');
             }
-            System.out.print('\n');
         }
         return result;
     }
 
     public void addEdge(int x, int y) {
-        //implement
+        this.matrix[x][y] = 1;
+        this.matrix[y][x] = 1;
     }
 
     public int degree(int x) {
@@ -81,5 +82,12 @@ public class AdjGraph {
         visited[y] = 1;
 
         //implement
+    }
+
+    public static void main(String[] args) {
+        AdjGraph test = new AdjGraph(3);
+        test.addEdge(0, 1);
+        test.addEdge(0, 2);
+        test.toString();
     }
 }

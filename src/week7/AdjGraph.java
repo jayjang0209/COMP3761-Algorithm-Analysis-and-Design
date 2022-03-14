@@ -21,14 +21,16 @@ public class AdjGraph {
     }
 
     public String toString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < this.matrix[0].length; i++) {
             for (int j = 0; j < this.matrix[0].length; j++) {
-                System.out.print(this.matrix[i][j]);
-                System.out.print((j == this.matrix[0].length - 1) ? '\n' : ' ');
+//                System.out.print(this.matrix[i][j]);
+//                System.out.print((j == this.matrix[0].length - 1) ? '\n' : ' ');
+                result.append(this.matrix[i][j]);
+                result.append((j == this.matrix[0].length - 1) ? '\n' : ' ');
             }
         }
-        return result;
+        return result.toString();
     }
 
     public void addEdge(int x, int y) {
@@ -39,8 +41,11 @@ public class AdjGraph {
     public int degree(int x) {
         int degree = 0;
 
-        //implement
-
+        for (int col = 0; col < this.matrix[x].length; col++) {
+            if (this.matrix[x][col] == 1) {
+                degree++;
+            }
+        }
         return degree;
     }
 
@@ -88,6 +93,6 @@ public class AdjGraph {
         AdjGraph test = new AdjGraph(3);
         test.addEdge(0, 1);
         test.addEdge(0, 2);
-        test.toString();
+        System.out.println(test); // or test.toString?
     }
 }

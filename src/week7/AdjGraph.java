@@ -72,7 +72,13 @@ public class AdjGraph {
 
     }
 
-    public int degree(int x) {
+    /**
+     * Get the degree of the specified vertex.
+     *
+     * @param x an int representing a vertex
+     * @return degree as an int
+     */
+    public int degree(final int x) {
         int degree = 0;
 
         for (int col = 0; col < this.matrix[x].length; col++) {
@@ -83,7 +89,13 @@ public class AdjGraph {
         return degree;
     }
 
-    public int inDegree(int vert) {
+    /**
+     * Get the in degree of the specified vertex.
+     *
+     * @param vert an int representing a vertex
+     * @return in-degree as an int
+     */
+    public int inDegree(final int vert) {
         int in = 0;
         for (int row = 0; row < this.matrix[vert].length; row++) {
             if (this.matrix[row][vert] == 1) {
@@ -93,7 +105,13 @@ public class AdjGraph {
         return in;
     }
 
-    public int outDegree(int vert) {
+    /**
+     * Get the out degree of the specified vertex.
+     *
+     * @param vert an int representing a vertex
+     * @return out-degree as an int
+     */
+    public int outDegree(final int vert) {
         int out = 0;
         for (int col = 0; col < this.matrix[vert].length; col++) {
             if (this.matrix[vert][col] == 1) {
@@ -103,6 +121,10 @@ public class AdjGraph {
         return out;
     }
 
+    /**
+     * Get the out degree of the specified vertex.
+     *
+     */
     public void DFS() {
         visited = new int[matrix.length];
         for (int vertex = 0; vertex < matrix.length; vertex++) {

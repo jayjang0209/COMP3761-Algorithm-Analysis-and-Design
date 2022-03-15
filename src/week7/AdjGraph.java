@@ -1,6 +1,7 @@
 package week7;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Queue;
 
 public class AdjGraph {
@@ -17,7 +18,7 @@ public class AdjGraph {
     }
 
     public void setDirected() {
-
+        directed = true;
     }
 
     public String toString() {
@@ -34,8 +35,13 @@ public class AdjGraph {
     }
 
     public void addEdge(int x, int y) {
-        this.matrix[x][y] = 1;
-        this.matrix[y][x] = 1;
+        if (!directed) {
+            this.matrix[x][y] = 1;
+            this.matrix[y][x] = 1;
+        } else {
+            this.matrix[x][y] = 1;
+        }
+
     }
 
     public int degree(int x) {
@@ -51,48 +57,81 @@ public class AdjGraph {
 
     public int inDegree(int vert) {
         int in = 0;
-
-        //implement
+        for (int row = 0; row < this.matrix[vert].length; row++) {
+            if (this.matrix[row][vert] == 1) {
+                in++;
+            }
+        }
         return in;
     }
 
     public int outDegree(int vert) {
-        int in = 0;
-
-        //implement
-
-        return in;
+        int out = 0;
+        for (int col = 0; col < this.matrix[vert].length; col++) {
+            if (this.matrix[vert][col] == 1) {
+                out++;
+            }
+        }
+        return out;
     }
 
     public void DFS() {
         visited = new int[matrix.length];
-
-        //implement
+        for (int vertex = 0; vertex < matrix.length; vertex++) {
+            if (visited[vertex] == 0) {
+                dfs(vertex);
+            }
+        }
     }
 
     public void dfs(int y) {
+        visited[y] = 1;
         System.out.println("Visiting vertex: " + y);
-
-        //implement
+        for (int vert = 0; vert < matrix.length; vert++) {
+            if (matrix[y][vert] == 1 && visited[vert] == 0) {
+                dfs(vert);
+            }
+        }
     }
 
     public void BFS() {
         visited = new int[matrix.length];
-
-        //implement
+        for (int vertex = 0; vertex < matrix.length; vertex++) {
+            if (visited[vertex] == 0) {
+                bfs(vertex);
+            }
+        }
     }
 
     public void bfs(int y) {
-        Queue<Integer> q = new ArrayDeque<Integer>();
         visited[y] = 1;
-
-        //implement
+        System.out.println("Visiting vertex: " + y);
+        Queue<Integer> q = new ArrayDeque<Integer>();
+        q.add(y);
+        while (q.size() != 0) {
+            int headOfQueue = q.peek();
+//            System.out.println("Q:" + q + "head: " + headOfQueue );
+            for (int vert = 0; vert < matrix.length; vert++) {
+                if (matrix[headOfQueue][vert] == 1 && visited[vert] == 0) {
+//                    System.out.println("unvisted adjacent" + vert);
+                    this.visited[vert] = 1;
+                    System.out.println("Visiting vertex: " + vert);
+                    q.add(vert);
+                }
+            }
+            q.poll();
+        }
     }
 
     public static void main(String[] args) {
         AdjGraph test = new AdjGraph(3);
+        test.setDirected();
         test.addEdge(0, 1);
         test.addEdge(0, 2);
+        System.out.println(test.outDegree(0));
+        System.out.println(test.inDegree(1));
+        System.out.println(test.inDegree(0));
+
         System.out.println(test); // or test.toString?
     }
 }

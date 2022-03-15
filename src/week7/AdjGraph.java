@@ -32,16 +32,23 @@ public class AdjGraph {
         return directed;
     }
 
+    /**
+     * Set this graph directed.
+     *
+     */
     public void setDirected() {
         directed = true;
     }
 
+    /**
+     * Returns a String representation of this Graph.
+     *
+     * @return toString as a string
+     */
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < this.matrix[0].length; i++) {
             for (int j = 0; j < this.matrix[0].length; j++) {
-//                System.out.print(this.matrix[i][j]);
-//                System.out.print((j == this.matrix[0].length - 1) ? '\n' : ' ');
                 result.append(this.matrix[i][j]);
                 result.append((j == this.matrix[0].length - 1) ? '\n' : ' ');
             }
@@ -49,7 +56,13 @@ public class AdjGraph {
         return result.toString();
     }
 
-    public void addEdge(int x, int y) {
+    /**
+     * Adds edges.
+     *
+     * @param x an int representing start vertex
+     * @param y an int representing end vertex
+     */
+    public void addEdge(final int x, final int y) {
         if (!directed) {
             this.matrix[x][y] = 1;
             this.matrix[y][x] = 1;

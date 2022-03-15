@@ -1,18 +1,33 @@
 package week7;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Queue;
 
+/**
+ * Represents a Graph.
+ *
+ * @author Jonghoon Jang
+ * @version March, 2022
+ */
 public class AdjGraph {
-    private int matrix[][];
+    private final int[][] matrix;
     private boolean directed = false;
     private int[] visited;
 
+    /**
+     * Constructs an adjacency Matrix.
+     *
+     * @param num an int representing number of vertices
+     */
     public AdjGraph(final int num) {
         matrix = new int[num][num];
     }
 
+    /**
+     * Returns true if this Graph is directed, else false.
+     *
+     * @return true if this Graph is directed, else false as a boolean
+     */
     public boolean isDirected() {
         return directed;
     }

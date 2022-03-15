@@ -122,58 +122,75 @@ public class AdjGraph {
     }
 
     /**
-     * Get the out degree of the specified vertex.
+     * Runs Depth-First Search(DFS).
      *
      */
     public void DFS() {
         visited = new int[matrix.length];
         for (int vertex = 0; vertex < matrix.length; vertex++) {
-            if (visited[vertex] == 0) {
+            if (visited[vertex] == 0) { // vertex has not been visited
                 dfs(vertex);
             }
         }
     }
 
-    public void dfs(int y) {
-        visited[y] = 1;
+    /**
+     * Helper function for Depth-First Search(DFS).
+     *
+     * @param y an int representing a vertex
+     */
+    public void dfs(final int y) {
+        this.visited[y] = 1; // visit node v
         System.out.println("Visiting vertex: " + y);
-        for (int vert = 0; vert < matrix.length; vert++) {
-            if (matrix[y][vert] == 1 && visited[vert] == 0) {
+        for (int vert = 0; vert < this.matrix.length; vert++) {
+            if (matrix[y][vert] == 1 && visited[vert] == 0) { //adjacent vertex & not been visited
                 dfs(vert);
             }
         }
     }
 
+    /**
+     * Runs Breadth-first search(BFS).
+     *
+     */
     public void BFS() {
-        visited = new int[matrix.length];
-        for (int vertex = 0; vertex < matrix.length; vertex++) {
-            if (visited[vertex] == 0) {
+        this.visited = new int[this.matrix.length];
+        for (int vertex = 0; vertex < this.matrix.length; vertex++) {
+            if (this.visited[vertex] == 0) { // vertex has not been visited
                 bfs(vertex);
             }
         }
     }
 
-    public void bfs(int y) {
-        visited[y] = 1;
+    /**
+     * Helper function for Breadth-first search(BFS).
+     *
+     * @param y an int representing a vertex
+     */
+    public void bfs(final int y) {
+        this.visited[y] = 1;
         System.out.println("Visiting vertex: " + y);
-        Queue<Integer> q = new ArrayDeque<Integer>();
+        Queue<Integer> q = new ArrayDeque<>();
         q.add(y);
-        while (q.size() != 0) {
-            int headOfQueue = q.peek();
-//            System.out.println("Q:" + q + "head: " + headOfQueue );
-            for (int vert = 0; vert < matrix.length; vert++) {
-                if (matrix[headOfQueue][vert] == 1 && visited[vert] == 0) {
-//                    System.out.println("unvisted adjacent" + vert);
-                    this.visited[vert] = 1;
+        while (q.size() != 0) { // while Q is not empty
+            int headOfQueue = q.peek(); // Q.head
+            for (int vert = 0; vert < this.matrix.length; vert++) {
+                if (matrix[headOfQueue][vert] == 1 && visited[vert] == 0) { //adj vert & not visited
+                    this.visited[vert] = 1; // visit adjacent node
                     System.out.println("Visiting vertex: " + vert);
-                    q.add(vert);
+                    q.add(vert); // add adjacent node to Q
                 }
             }
-            q.poll();
+            q.poll(); // remove Q.head from Q
         }
     }
 
-    public static void main(String[] args) {
+    /**
+     * Drives the program.
+     *
+     * @param args unused
+     */
+    public static void main(final String[] args) {
         AdjGraph test = new AdjGraph(3);
         test.setDirected();
         test.addEdge(0, 1);
